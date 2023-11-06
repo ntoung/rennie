@@ -7,7 +7,8 @@ import * as auth from 'auth-provider'
 import {client} from 'utils/api-client'
 import {useAsync} from 'utils/hooks'
 import {setQueryDataForBook} from 'utils/books'
-import {FullPageSpinner, FullPageErrorFallback} from 'components/lib'
+import {FullPageSpinner} from 'components/lib'
+import {FullPageErrorFallback} from 'components/error'
 
 async function bootstrapAppData() {
   let user = null
