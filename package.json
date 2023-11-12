@@ -10,9 +10,9 @@
     "npm": ">=8.16.0"
   },
   "scripts": {
-    "start": "concurrently \"react-scripts start\" \"npx tailwindcss -i ./src/tailwind.css -o ./public/output.css --watch\"",
-    "start:cli": "cross-env BROWSER=none react-scripts start",
-    "build": "react-scripts build --profile",
+    "start": "concurrently \"node scripts/start.js\" \"npx tailwindcss -i ./src/tailwind.css -o ./public/output.css --watch\"",
+    "start:cli": "cross-env BROWSER=none node scripts/start.js",
+    "build": "node scripts/build.js --profile",
     "build:css": "npx tailwindcss -i ./src/tailwind.css -o ./build/output.css",
     "css:watch": "npx tailwindcss -i ./src/tailwind.css -o ./public/output.css --watch",
     "test": "is-ci-cli \"test:coverage\" \"test:watch\"",
@@ -22,7 +22,6 @@
     "cy:install": "cypress install",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
-    "eject": "react-scripts eject",
     "test:e2e": "start-server-and-test start:cli http://localhost:3000/list cy:open",
     "test:e2e:run": "start-server-and-test serve http://localhost:8811/list cy:run",
     "serve": "serve --no-clipboard --single --listen 8811 build",
@@ -33,6 +32,7 @@
     "validate": "npm run validate-exercises && npm-run-all --parallel lint test:coverage build"
   },
   "dependencies": {
+    "@babel/core": "^7.16.0",
     "@emotion/core": "^10.0.35",
     "@emotion/styled": "^10.0.27",
     "@headlessui/react": "^1.7.17",
@@ -42,35 +42,60 @@
     "@reach/tabs": "^0.17.0",
     "@reach/tooltip": "^0.17.0",
     "@reach/visually-hidden": "^0.17.0",
+    "@svgr/webpack": "^5.5.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.6",
     "@tailwindcss/typography": "^0.5.10",
+    "babel-jest": "^27.4.2",
+    "babel-plugin-named-asset-import": "^0.3.8",
+    "babel-preset-react-app": "^10.0.1",
+    "bfj": "^7.0.2",
     "bootstrap": "^5.1.3",
+    "browserslist": "^4.18.1",
+    "camelcase": "^6.2.1",
     "codegen.macro": "^4.1.0",
-    "crypto-browserify": "^3.12.0",
     "crypto": "npm:crypto-browserify",
+    "crypto-browserify": "^3.12.0",
     "debounce-fn": "^4.0.0",
-    "dotenv": "^16.3.1",
+    "eslint": "^8.3.0",
+    "eslint-config-react-app": "^7.0.1",
     "faker": "^5.5.3",
+    "fs-extra": "^10.0.0",
     "history": "^5.3.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.4.3",
+    "jest-resolve": "^27.4.2",
+    "jest-watch-typeahead": "^1.0.0",
     "match-sorter": "^6.3.1",
     "msw": "^0.42.1",
     "os-browserify": "^0.3.0",
     "path-browserify": "^1.0.1",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-normalize": "^10.0.1",
+    "postcss-preset-env": "^7.0.1",
+    "process": "^0.11.10",
+    "prompts": "^2.4.2",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
+    "react-app-polyfill": "^3.0.0",
+    "react-dev-utils": "^12.0.1",
     "react-dom": "^18.2.0",
     "react-error-boundary": "^3.1.4",
     "react-icons": "^4.4.0",
     "react-query": "2.1.1",
     "react-query-devtools": "2.3.3",
+    "react-refresh": "^0.11.0",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
-    "react-scripts": "^5.0.1",
-    "stop-runaway-react-effects": "^2.0.0"
+    "resolve": "^1.20.0",
+    "resolve-url-loader": "^4.0.0",
+    "semver": "^7.3.5",
+    "stop-runaway-react-effects": "^2.0.0",
+    "tailwindcss": "^3.0.2"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.17.12",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "@testing-library/cypress": "^8.0.3",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
@@ -79,35 +104,56 @@
     "@types/react-dom": "^18.0.5",
     "@typescript-eslint/parser": "^6.9.1",
     "autoprefixer": "^10.4.16",
+    "babel-loader": "^9.1.3",
+    "case-sensitive-paths-webpack-plugin": "^2.4.0",
     "cross-env": "^7.0.3",
+    "css-loader": "^6.8.1",
+    "css-minimizer-webpack-plugin": "^5.0.1",
     "cypress": "^10.1.0",
     "cypress-hmr-restarter": "^2.0.3",
-    "eslint-plugin-cypress": "^2.12.1",
+    "dotenv": "^16.3.1",
+    "dotenv-expand": "^10.0.0",
+    "eslint-plugin-cypress": "^2.15.1",
     "eslint-plugin-react": "^7.33.2",
+    "eslint-webpack-plugin": "^4.0.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.3",
     "husky": "4.3.8",
     "inquirer": "^9.0.0",
     "is-ci": "^3.0.1",
     "is-ci-cli": "^2.2.0",
     "jest": "^27.4.3",
     "jest-watch-typeahead": "^0.6.4",
+    "mini-css-extract-plugin": "^2.7.6",
     "node-match-path": "^0.6.3",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.31",
-    "prettier": "2.8.8",
+    "postcss-loader": "^7.3.3",
+    "prettier": "^3.0.3",
     "react-test-renderer": "^18.2.0",
     "resolve": "^1.22.1",
+    "sass-loader": "^13.3.2",
     "serve": "^13.0.2",
+    "source-map-loader": "^4.0.1",
     "start-server-and-test": "^1.14.0",
+    "style-loader": "^3.3.3",
     "tailwindcss": "^3.3.5",
+    "terser-webpack-plugin": "^5.3.9",
     "typescript": "^5.2.2",
-    "whatwg-fetch": "^3.6.2"
+    "url-loader": "^4.1.1",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1",
+    "webpack-manifest-plugin": "^5.0.0",
+    "whatwg-fetch": "^3.6.2",
+    "workbox-webpack-plugin": "^7.0.0"
   },
   "browser": {
     "crypto": false
   },
   "babel": {
     "presets": [
-      "@babel/preset-react"
+      "react-app"
     ]
   },
   "eslintConfig": {
@@ -147,5 +193,58 @@
   },
   "msw": {
     "workerDirectory": "public"
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*.d.ts"
+    ],
+    "setupFiles": [
+      "react-app-polyfill/jsdom"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setupTests.js"
+    ],
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
+      "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
+    ],
+    "testEnvironment": "jsdom",
+    "transform": {
+      "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": "<rootDir>/config/jest/babelTransform.js",
+      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
+      "^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
+    },
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$",
+      "^.+\\.module\\.(css|sass|scss)$"
+    ],
+    "modulePaths": [
+      "C:\\Users\\Nathan\\Developer\\rennie\\src"
+    ],
+    "moduleNameMapper": {
+      "^react-native$": "react-native-web",
+      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+    },
+    "moduleFileExtensions": [
+      "web.js",
+      "js",
+      "web.ts",
+      "ts",
+      "web.tsx",
+      "tsx",
+      "json",
+      "web.jsx",
+      "jsx",
+      "node"
+    ],
+    "watchPlugins": [
+      "jest-watch-typeahead/filename",
+      "jest-watch-typeahead/testname"
+    ],
+    "resetMocks": true
   }
 }
