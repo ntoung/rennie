@@ -25,8 +25,8 @@ function ls(key, defaultVal) {
   return Number.isFinite(val) ? val : defaultVal
 }
 
-const apiUrl = process.env.REACT_APP_API_URL
-const authUrl = process.env.REACT_APP_AUTH_URL
+const apiUrl = process.env.BACKEND_API_URL
+const authUrl = process.env.BACKEND_API_URL
 
 const handlers = [
   rest.post(`${authUrl}/login`, async (req, res, ctx) => {

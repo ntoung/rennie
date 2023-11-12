@@ -1,3 +1,6 @@
+import * as React from 'react'
+import * as colors from 'styles/colors'
+
 const errorMessageVariants = {
   stacked: {display: 'block'},
   inline: {display: 'inline-block'},
@@ -36,7 +39,7 @@ function FullPageErrorFallback({error}) {
         alignItems: 'center',
       }}
     >
-      <p>Uh oh... There's a problem. Try refreshing the app.</p>
+      <p>Uh oh... Theres a problem. Try refreshing the app.</p>
       <pre>{error.message}</pre>
     </div>
   )

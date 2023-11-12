@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 const usersKey = '__bookshelf_users__'
 let users = {}
 const persist = () =>

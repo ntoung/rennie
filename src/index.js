@@ -1,6 +1,7 @@
 import {loadDevTools} from './dev-tools/load'
 import './bootstrap'
 import * as React from 'react'
+import 'dotenv/config'
 import {createRoot} from 'react-dom/client'
 import {Profiler} from 'components/profiler'
 import {App} from './app'

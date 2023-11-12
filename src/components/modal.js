@@ -7,8 +7,8 @@ import {Dialog, CircleButton} from './lib'
 
 const callAll =
   (...fns) =>
-  (...args) =>
-    fns.forEach(fn => fn && fn(...args))
+    (...args) =>
+      fns.forEach(fn => fn && fn(...args))
 
 const ModalContext = React.createContext()
 

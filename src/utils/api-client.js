@@ -1,6 +1,6 @@
 import {queryCache} from 'react-query'
 import * as auth from 'auth-provider'
-const apiURL = process.env.REACT_APP_API_URL
+const apiURL = process.env.BACKEND_API_URL
 
 async function client(
   endpoint,
@@ -16,7 +16,8 @@ async function client(
     },
     ...customConfig,
   }
-
+  //debugger;
+  console.log(`${apiURL}/${endpoint}`);
   return window.fetch(`${apiURL}/${endpoint}`, config).then(async response => {
     if (response.status === 401) {
       queryCache.clear()

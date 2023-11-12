@@ -3,7 +3,7 @@ import * as auth from 'auth-provider'
 import {server, rest} from 'test/server'
 import {client} from '../api-client'
 
-const apiURL = process.env.REACT_APP_API_URL
+const apiURL = process.env.BACKEND_API_URL
 
 jest.mock('react-query')
 jest.mock('auth-provider')

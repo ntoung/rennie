@@ -47,7 +47,7 @@ function useAsync(initialState) {
     promise => {
       if (!promise || !promise.then) {
         throw new Error(
-          `The argument passed to useAsync().run must be a promise. Maybe a function that's passed isn't returning anything?`,
+          'The argument passed to useAsync().run must be a promise. Maybe a function that\'s passed isn\'t returning anything?',
         )
       }
       safeSetState({status: 'pending'})

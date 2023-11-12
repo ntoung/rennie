@@ -15,7 +15,7 @@ function ReadingListScreen() {
       }
       noFilteredListItems={
         <p>
-          Looks like you've finished all your books! Check them out in your{' '}
+          Looks like you`&#39;`ve finished all your books! Check them out in your{' '}
           <Link to="/finished">finished books</Link> or{' '}
           <Link to="/discover">discover more</Link>.
         </p>

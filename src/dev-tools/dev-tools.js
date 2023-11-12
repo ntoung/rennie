@@ -115,10 +115,10 @@ function install() {
             },
             show
               ? {
-                  height: '50vh',
-                  width: '100%',
-                  opacity: '1',
-                }
+                height: '50vh',
+                width: '100%',
+                opacity: '1',
+              }
               : null,
           ]}
         >

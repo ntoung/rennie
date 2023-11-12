@@ -45,7 +45,7 @@ async function create({
   const id = hash(`${bookId}${ownerId}`)
   if (listItems[id]) {
     const error = new Error(
-      `This user cannot create new list item for that book`,
+      'This user cannot create new list item for that book',
     )
     error.status = 400
     throw error
