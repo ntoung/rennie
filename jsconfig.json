@@ -1,6 +1,23 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "target": "es6",
+    "module": "ES2022",
+    "strict": true,
+    "esModuleInterop": true,
+    "paths": {
+      "crypto-browserify": [
+        "node_modules/crypto-browserify"
+      ],
+      "os-browserify": [
+        "node_modules/os-browserify"
+      ],
+      "path-browserify": [
+        "node_modules/path-browserify"
+      ]
+    }
   },
-  "include": ["src"]
+  "include": [
+    "src"
+  ]
 }
