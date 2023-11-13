@@ -40,8 +40,8 @@ function TooltipButton({label, highlight, onClick, icon, ...rest}) {
             color: isLoading
               ? colors.gray80
               : isError
-              ? colors.danger
-              : highlight,
+                ? colors.danger
+                : highlight,
           },
         }}
         disabled={isLoading}
@@ -65,7 +65,7 @@ function StatusButtons({book}) {
   return (
     <React.Fragment>
       {listItem ? (
-        Boolean(listItem.finishDate) ? (
+        listItem.finishDate ? (
           <TooltipButton
             label="Mark as unread"
             highlight={colors.yellow}

@@ -23,8 +23,9 @@
   "rules": {
     "indent": ["error", 2],
     "linebreak-style": 0,
-    "quotes": ["error", "single"],
-    "react/no-unknown-property": ["error", { "ignore": ["css"] }],
+    "quotes": ["error", "single", {"allowTemplateLiterals": true}],
+    "react/no-unknown-property": ["error", {"ignore": ["css"]}],
+    "react/no-unescaped-entities": 0,
     "react/prop-types": "off" // You can customize rules based on your project needs
   }
 }

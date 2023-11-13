@@ -1,3 +1,6 @@
+import * as React from 'react'
+import * as colors from 'styles/colors'
+
 const errorMessageVariants = {
   stacked: {display: 'block'},
   inline: {display: 'inline-block'},

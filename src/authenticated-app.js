@@ -8,13 +8,11 @@ import {useAuth} from './context/auth-context'
 import {ReadingListScreen} from './screens/reading-list'
 import {FinishedScreen} from './screens/finished'
 import {CalendarScreen} from './screens/calendar'
+import {ClientsScreen} from './screens/clients'
 import {BookScreen} from './screens/book'
 import {NotFoundScreen} from './screens/not-found'
 import {Nav} from './components/nav'
-import {
-  ErrorFallback,
-  FullPageErrorFallback,
-} from './components/error'
+import {ErrorFallback, FullPageErrorFallback} from './components/error'
 
 function AuthenticatedApp() {
   const {user, logout} = useAuth()
@@ -60,6 +58,7 @@ function AppRoutes() {
       <Route path="/list" element={<ReadingListScreen />} />
       <Route path="/finished" element={<FinishedScreen />} />
       <Route path="/calendar" element={<CalendarScreen />} />
+      <Route path="/clients" element={<ClientsScreen />} />
       <Route path="/book/:bookId" element={<BookScreen />} />
       <Route path="*" element={<NotFoundScreen />} />
     </Routes>
